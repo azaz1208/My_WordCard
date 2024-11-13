@@ -1,0 +1,116 @@
+<WordCard_layout@MDBoxLayout>:
+    height: 150
+    size_hint_y: None
+    canvas.before:
+        Color:
+            rgba: (65/255, 105/255, 225/255, 1)  # 紅色背景 (R, G, B, A)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    MDFlatButton:
+        size_hint: 1, 1
+        on_release: app.on_wordCard_label_press(root.card_uuid)
+        MDLabel:
+            text: root.text
+            halign: 'center'  # 水平居中
+            valign: 'center'  # 垂直居中
+<Plus_WordCard_layout@MDBoxLayout>
+    height: 150
+    size_hint_y: None
+    canvas.before:
+        Color:
+            rgba: (65/255, 105/255, 225/255, 1)  # 紅色背景 (R, G, B, A)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    MDFlatButton:
+        size_hint: 1, 1
+        on_release: app.show_add_card_dialog()
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 1
+            spacing: "12dp"  # 圖標與文字之間的間距
+            padding: "12dp"
+            MDIcon:
+                icon: "pen-plus"  # 圖標名稱，可以更改成你想要的圖標
+                size_hint: None, None
+                size: "36dp", "36dp"  # 調整圖標大小
+                font_size: "36dp"  # 調整圖標的字體大小，使圖標變大
+                pos_hint: {'x': 0.5, 'center_y': 0.5}
+                theme_text_color: "Custom"
+            MDLabel:
+                text: root.text
+                font_size: 48
+<AddCardDialog_Content@MDBoxLayout>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "300dp"
+    MDTextField:
+        id: word_input
+        hint_text: "Word"
+        font_name: "kose"
+    MDTextField:
+        id: meaning_input
+        multiline: True
+        hint_text: "Meaning"
+        max_height: "150dp"
+        font_name: "kose"
+    MDTextField:
+        id: sentence_input
+        multiline: True
+        hint_text: "Sentence"
+        max_height: "200dp"
+        font_name: "kose"
+                
+<WordCard_Dialog_Content@MDBoxLayout>
+    orientation: "vertical"
+    spacing: "24dp"
+    size_hint_y: None
+    height: "300dp"
+    MDLabel:
+        text: root.word
+        font_style: "H2"
+        halign: "center"
+        height: "80dp"
+        size_hint_y: None
+        theme_text_color: "Custom"
+        text_color: (65/255, 105/255, 225/255, 1)
+
+    MDLabel:
+        text: root.meaning
+        font_size: "18dp"
+        theme_text_color: "Custom"
+        text_color: (1, 1, 1, 1)   
+
+    MDLabel:
+        text: root.sentence
+        font_size: "18dp"
+        theme_text_color: "Custom"
+        text_color: (1, 1, 1, 1)
+        
+        
+#====== Main app layout ======               
+MDBoxLayout:
+    orientation: 'vertical'
+    MDBoxLayout:
+        ScrollView:
+            MDBoxLayout:
+                id: wordCard_area
+                orientation: 'vertical'
+                height: self.minimum_height
+                size_hint_y: None
+                spacing: 20
+                padding: 20
+                Plus_WordCard_layout:
+                    text: "Add New Card"
+                   
+    # Bottom Btns
+    MDBoxLayout:
+        size_hint_y: 0.16
+        Button:
+            text: 'Add Word'
+            on_release: app.show_add_card_dialog()
+        Button:
+            text: 'Exit'
+            on_release: app.close_app()

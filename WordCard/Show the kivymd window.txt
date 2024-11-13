@@ -1,0 +1,15 @@
+1. Show the kivymd window. (set window size and can connect to .kv file)
+2. Generate two button below.
+3. Generate a scrollable area, and put something into it.
+4. Define your own wordcard_layout and add it to scrollable area.
+5. Let "Add card" button works.
+	a. print something 
+	b. add a wordcard 
+	c. open a dialog
+	d. Ask user type word
+	e. save word
+6. Let each wordcard label work.
+	a. show dialog
+	b. get card data, and show on the dialog
+	c. "Edit" button
+7. Show next and last wordcard.
